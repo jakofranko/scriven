@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Time Tracker</title>
+
+    <!-- JS -->
+    <script src="scripts/libs/jquery-3.2.1.min.js"></script>
+    <script src="scripts/libs/underscore.js"></script>
+    <script src="scripts/libs/backbone.js"></script>
+    <script src="scripts/models/category.js"></script>
+    <script src="scripts/models/goal.js"></script>
+    <script src="scripts/models/interval.js"></script>
+    <script src="scripts/goal.js"></script>
+    <script src="scripts/goals.js"></script>
+    <script src="scripts/logger.js"></script>
+    <script src="scripts/progress.js"></script>
+    <script src="scripts/tracker.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles/macian.min.css">
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body class="bg-blanc noir p4">
+    <div id="categories" class="c6 mb3">
+        <h2 class="mb3">Categories</h2>
+        <div class="r">
+            <div class="r"><label for="new-category">New Category</label></div>
+            <input type="text" name="new-category" id="new-category" placeholder="Category Name">
+        </div>
+        <div id="categories-list"></div>
+    </div>
+    <div id="goals" class="c6 mb3">
+        <h2 class="mb3">Goals</h2>
+        <div class="r">
+            <table id="goals-list" class="w9"></table>
+            <button type="button" class="add ph2 pv1">Add Goal</button>
+        </div>
+    </div>
+    <script>
+        var tracker = new Tracker(categories);
+        tracker.install();
+    </script>
+</body>
+</html>

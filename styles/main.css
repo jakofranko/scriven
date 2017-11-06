@@ -1,0 +1,22 @@
+html {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.progress {
+    padding: 2px;
+    position: relative;
+    height: 20px;
+}
+
+.progress .progress-bar {
+    height: 100%;
+    width: 0%;
+    background: black
+}
+
+.r:after {
+    content: "";
+    display: table;
+    clear: both;
+}
