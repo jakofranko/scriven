@@ -44,19 +44,60 @@ const GoalItemView = Backbone.View.extend({
             }
         }
 
-        // Add delete button
-        html += "<td><button type='button' class='delete ph2 pv1'>Delete</button></td>";
+        // Add buttons
+        html += "<td>" +
+                    "<button type='button' class='edit ph2 pv1 mr2'>Edit</button>" +
+                    "<button type='button' class='delete ph2 pv1'>Delete</button>" +
+                "</td>";
+
         // Add rows
         this.$el.html(html);
         return this;
     },
     events: {
-        'click .delete': 'onDelete'
+        'click .delete': 'onDelete',
+        'click .edit': 'onEdit',
+        'click .update': 'onUpdate'
     },
     onDelete: function() {
         let yes = confirm(`Are you sure you want to delete the goal '${this.model.get('name')}'?`);
         if(yes)
             this.model.destroy();
+    },
+    onEdit: function() {
+        // Clear out existing row
+        this.$el.html(null);
+
+        let $name = $(`<input type='text' name='name' value='${this.model.get('name')}' placeholder='name'/>`),
+            $unit= $(`<input type='text' name='unit' value='${this.model.get('unit')}' placeholder='unit'/>`),
+            categories = new CategoriesDropdownView({ collection: tracker.categories_collection }).render().$el,
+            intervals = new IntervalsDropdownView({collection: tracker.intervals_collection }).render().$el,
+            inputs = [$name, $unit, categories, intervals],
+            $td;
+
+        // Blank cell for id
+        this.$el.append("<td></td>");
+        inputs.forEach(input => {
+            $td = $('<td />');
+            $td.append(input);
+            this.$el.append($td);
+        });
+
+        // Button
+        this.$el.append("<td><button type='button' class='update ph2 pv1'>Update</button></td>");
+    },
+    onUpdate: function() {
+        let $name = this.$el.find('[name=name]'),
+            $unit = this.$el.find('[name=unit]'),
+            $category_id = this.$el.find('[name=category_id]'),
+            $interval_id = this.$el.find('[name=interval_id]');
+
+        debugger;
+        this.model.set('name', $name.val());
+        this.model.set('unit', $unit.val());
+        this.model.set('category_id', $category_id.val());
+        this.model.set('interval_id', $interval_id.val());
+        this.model.save();
     }
 });
 
