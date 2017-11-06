@@ -6,6 +6,7 @@ const GoalModel = Backbone.Model.extend({
         id: null,
         name: null,
         unit: null,
+        amount: null,
         category_id: null,
         interval_id: null
     }
@@ -29,7 +30,7 @@ const GoalItemView = Backbone.View.extend({
         let html = '';
 
         // Build rows
-        const attrs = ['id', 'name', 'unit', 'category_id', 'interval_id'];
+        const attrs = ['id', 'name', 'unit', 'amount', 'category_id', 'interval_id'];
         for(let i = 0; i < attrs.length; i++) {
             if(attrs[i] === 'category_id') {
                 let category_id = this.model.get(attrs[i]);
@@ -70,9 +71,10 @@ const GoalItemView = Backbone.View.extend({
 
         let $name = $(`<input type='text' name='name' value='${this.model.get('name')}' placeholder='name'/>`),
             $unit= $(`<input type='text' name='unit' value='${this.model.get('unit')}' placeholder='unit'/>`),
+            $amount= $(`<input type='text' name='amount' value='${this.model.get('amount')}' placeholder='amount'/>`),
             categories = new CategoriesDropdownView({ collection: tracker.categories_collection }).render().$el,
             intervals = new IntervalsDropdownView({collection: tracker.intervals_collection }).render().$el,
-            inputs = [$name, $unit, categories, intervals],
+            inputs = [$name, $unit, $amount, categories, intervals],
             $td;
 
         // Blank cell for id
@@ -89,14 +91,17 @@ const GoalItemView = Backbone.View.extend({
     onUpdate: function() {
         let $name = this.$el.find('[name=name]'),
             $unit = this.$el.find('[name=unit]'),
+            $amount = this.$el.find('[name=amount]'),
             $category_id = this.$el.find('[name=category_id]'),
             $interval_id = this.$el.find('[name=interval_id]');
 
-        debugger;
-        this.model.set('name', $name.val());
-        this.model.set('unit', $unit.val());
-        this.model.set('category_id', $category_id.val());
-        this.model.set('interval_id', $interval_id.val());
+        this.model.set({
+            'name': $name.val(),
+            'unit': $unit.val(),
+            'amount': $amount.val(),
+            'category_id': $category_id.val(),
+            'interval_id': $interval_id.val()
+        });
         this.model.save();
     }
 });
@@ -112,7 +117,7 @@ const NewGoalItemView = Backbone.View.extend({
         html.push(document.createElement('td'));
 
         // Add tds for the other attrs
-        const attrs = ['name', 'unit', 'category_id', 'interval_id'];
+        const attrs = ['name', 'unit', 'amount', 'category_id', 'interval_id'];
         attrs.forEach(attr => {
             td = document.createElement('td');
             if(attr === 'category_id') {
