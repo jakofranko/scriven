@@ -23,19 +23,31 @@
     <link rel="stylesheet" href="styles/main.css">
 </head>
 <body class="bg-blanc noir p4">
-    <div id="categories" class="c6 mb3">
-        <h2 class="mb3">Categories</h2>
-        <div class="r">
-            <div class="r"><label for="new-category">New Category</label></div>
-            <input type="text" name="new-category" id="new-category" placeholder="Category Name">
+    <div class="r mb4">
+        <div id="categories" class="c6">
+            <h2 class="mb3">Categories</h2>
+            <div class="r">
+                <div class="r"><label for="new-category">New Category</label></div>
+                <input type="text" name="new-category" id="new-category" placeholder="Category Name">
+            </div>
+            <div id="categories-list"></div>
         </div>
-        <div id="categories-list"></div>
+        <div id="goals" class="c6">
+            <h2 class="mb3">Goals</h2>
+            <div class="r">
+                <table id="goals-list" class="w9"></table>
+                <button type="button" class="add ph2 pv1">Add Goal</button>
+            </div>
+        </div>
     </div>
-    <div id="goals" class="c6 mb3">
-        <h2 class="mb3">Goals</h2>
-        <div class="r">
-            <table id="goals-list" class="w9"></table>
-            <button type="button" class="add ph2 pv1">Add Goal</button>
+    <div class="r mb4">
+        <div class="c6">
+            <h2 class="mb3">Logger</h2>
+            <div id="logger"></div>
+        </div>
+        <div class="c6" id="logs">
+            <h2 class="mb3">Logs</h2>
+            <table id="logs-list"></table>
         </div>
     </div>
     <script>
