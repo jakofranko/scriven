@@ -17,17 +17,14 @@ function Tracker(categories, logs) {
     this.logs = logs || [];
     this.progress = {};
 
-    this.logger = new Logger(this);
+    // this.logger = new Logger(this);
     this.progress = new Progress(this);
 
     // Load collections
     this.categories_collection = new CategoriesCollection();
     this.intervals_collection = new IntervalsCollection();
     this.goals_collection = new GoalsCollection();
-
-    // Load views
-    this.categories_view = new CategoriesView({ collection: this.categories_collection });
-    this.goals_view = new GoalsView({ collection: this.goals_collection });
+    this.logs_collection = new LogsCollection();
 
     // Elements
     this.el = document.createElement("div");
@@ -35,25 +32,32 @@ function Tracker(categories, logs) {
     this.el.id = "tracker";
 }
 Tracker.prototype.install = function() {
+    // Load views
+    this.categories_view = new CategoriesView({ collection: this.categories_collection });
+    this.goals_view = new GoalsTableView({ collection: this.goals_collection });
+    this.logs_table_view = new LogsTableView({ collection: this.logs_collection });
+    this.logger_view = new LoggerView({ collection: this.logs_collection });
+
+    // Load non backbone stuff
     let tracker = this;
     let option = document.createElement("option");
 
 
-    this.categories.forEach(category => {
-        category.goals.forEach(goal => {
-            if(goal.interval != "milestone") {
-
-                // Update logger
-                this.logger.addTask(goal);
-            }
-        });
-    });
+    // this.categories.forEach(category => {
+    //     category.goals.forEach(goal => {
+    //         if(goal.interval != "milestone") {
+    //
+    //             // Update logger
+    //             this.logger.addTask(goal);
+    //         }
+    //     });
+    // });
 
     // Put the logger in the DOM
     document.body.appendChild(this.el);
 
     // Install other components
-    this.logger.install();
+    // this.logger.install();
     this.progress.install();
 };
 
