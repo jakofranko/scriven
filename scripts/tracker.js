@@ -39,25 +39,8 @@ Tracker.prototype.install = function() {
     this.logger_view = new LoggerView({ collection: this.logs_collection });
 
     // Load non backbone stuff
-    let tracker = this;
-    let option = document.createElement("option");
-
-
-    // this.categories.forEach(category => {
-    //     category.goals.forEach(goal => {
-    //         if(goal.interval != "milestone") {
-    //
-    //             // Update logger
-    //             this.logger.addTask(goal);
-    //         }
-    //     });
-    // });
-
-    // Put the logger in the DOM
-    document.body.appendChild(this.el);
 
     // Install other components
-    // this.logger.install();
     this.progress.install();
 };
 

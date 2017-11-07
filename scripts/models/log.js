@@ -47,6 +47,7 @@ const LogsTableView = Backbone.View.extend({
     initialize: function() {
         this.collection.fetch();
         this.listenTo(this.collection, 'sync change add remove', this.render);
+        this.listenTo(tracker.goals_collection, 'sync change add remove', this.render);
     },
     render: function() {
         let $table = this.$("#logs-list"),
