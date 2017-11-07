@@ -1,4 +1,4 @@
-function  Logger(tracker) {
+function Logger(tracker) {
     this.tracker = tracker;
 
     // Logger

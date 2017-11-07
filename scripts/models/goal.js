@@ -20,7 +20,7 @@ const GoalsCollection = Backbone.Collection.extend({
     }
 });
 
-const GoalItemView = Backbone.View.extend({
+const GoalsTableRowView = Backbone.View.extend({
     tagName: 'tr',
     className: 'goal',
     initialize: function() {
@@ -106,7 +106,7 @@ const GoalItemView = Backbone.View.extend({
     }
 });
 
-const NewGoalItemView = Backbone.View.extend({
+const NewGoalsTableRowView = Backbone.View.extend({
     tagName: 'tr',
     className: 'new-goal',
     render: function() {
@@ -158,7 +158,7 @@ const NewGoalItemView = Backbone.View.extend({
     }
 });
 
-const GoalsView = Backbone.View.extend({
+const GoalsTableView = Backbone.View.extend({
     el: '#goals',
     initialize: function() {
         this.collection.fetch();
@@ -169,7 +169,7 @@ const GoalsView = Backbone.View.extend({
         $list.empty();
 
         this.collection.each(model => {
-            let goal = new GoalItemView({ model });
+            let goal = new GoalsTableRowView({ model });
             $list.append(goal.render().$el);
         });
 
