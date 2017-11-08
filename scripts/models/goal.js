@@ -9,6 +9,14 @@ const GoalModel = Backbone.Model.extend({
         amount: null,
         category_id: null,
         interval_id: null
+    },
+    validate: function(attrs, options) {
+        if(typeof Number(attrs.amount) !== "number" || isNaN(attrs.amount))
+            return "Amount must be a number";
+        if(attrs.category_id === null || attrs.category_id === '')
+            return "Please set category";
+        if(attrs.interval_id === null || attrs.interval_id === '')
+            return "Please set interval";
     }
 });
 
@@ -95,13 +103,18 @@ const GoalsTableRowView = Backbone.View.extend({
             $category_id = this.$el.find('[name=category_id]'),
             $interval_id = this.$el.find('[name=interval_id]');
 
+        // Remove invalid class (if present), and add the updating class
+        this.$el.removeClass('invalid');
+        this.$el.addClass('updating');
+
         this.model.set({
             'name': $name.val(),
             'unit': $unit.val(),
             'amount': $amount.val(),
             'category_id': $category_id.val(),
             'interval_id': $interval_id.val()
-        });
+        }, {validate: true});
+
         this.model.save();
     }
 });
@@ -126,6 +139,8 @@ const NewGoalsTableRowView = Backbone.View.extend({
             } else if(attr === 'interval_id') {
                 select = new IntervalsDropdownView({collection: tracker.intervals_collection });
                 $(td).append(select.render().$el);
+            } else if(attr === 'amount') {
+                $(td).append(`<input type="number" name="${attr}" class="wf" placeholder="${attr}"/>`);
             } else {
                 $(td).append(`<input type="text" name="${attr}" class="wf" placeholder="${attr}"/>`);
             }
@@ -163,10 +178,15 @@ const GoalsTableView = Backbone.View.extend({
     initialize: function() {
         this.collection.fetch();
         this.listenTo(this.collection, 'sync change', this.render);
+        this.listenTo(this.collection, 'invalid', this.onInvalid);
     },
     render: function() {
+        // If one of the rows is invalid, don't render
+        if(this.$('.invalid').length) return;
+
         let $list = this.$('#goals-list');
         $list.empty();
+        this.$('.errors').text(null);
 
         this.collection.each(model => {
             let goal = new GoalsTableRowView({ model });
@@ -181,6 +201,12 @@ const GoalsTableView = Backbone.View.extend({
     onAdd: function() {
         const tr = new NewGoalsTableRowView({ collection: this.collection });
         this.$('#goals-list').append(tr.render().$el);
+    },
+    onInvalid: function(model) {
+        // Clicking the update button after editing a row will add the updating
+        // class to it's row. Find this row, and add the invalid class
+        this.$('.updating').addClass('invalid');
+        this.$('.errors').text(model.validationError);
     }
 });
 
