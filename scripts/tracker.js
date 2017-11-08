@@ -20,6 +20,7 @@ function Tracker(categories, logs) {
     // this.logger = new Logger(this);
     this.progress = new Progress(this);
 
+    // TODO: utilize promises so that we only install after all the collections have been fetched
     // Load collections
     this.categories_collection = new CategoriesCollection();
     this.intervals_collection = new IntervalsCollection();
