@@ -108,7 +108,7 @@ const CategoriesDropdownView = Backbone.View.extend({
     },
     render: function() {
         this.$el.html(null);
-        this.$el.append("<option>Select Category</option>");
+        this.$el.append("<option value=''>Select Category</option>");
         this.collection.each(model => {
             let view = new CategoryOptionView({ model });
             this.$el.append(view.render().$el);
