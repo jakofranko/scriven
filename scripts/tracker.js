@@ -17,20 +17,12 @@ function Tracker(categories, logs) {
     this.logs = logs || [];
     this.progress = {};
 
-    // this.logger = new Logger(this);
-    this.progress = new Progress(this);
-
     // TODO: utilize promises so that we only install after all the collections have been fetched
     // Load collections
     this.categories_collection = new CategoriesCollection();
     this.intervals_collection = new IntervalsCollection();
     this.goals_collection = new GoalsCollection();
     this.logs_collection = new LogsCollection();
-
-    // Elements
-    this.el = document.createElement("div");
-    this.el.classList.add('tracker');
-    this.el.id = "tracker";
 }
 Tracker.prototype.install = function() {
     // Load views
