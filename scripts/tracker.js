@@ -38,24 +38,5 @@ Tracker.prototype.install = function() {
     this.goals_view = new GoalsTableView({ collection: this.goals_collection });
     this.logs_table_view = new LogsTableView({ collection: this.logs_collection });
     this.logger_view = new LoggerView({ collection: this.logs_collection });
-
-    // Load non backbone stuff
-
-    // Install other components
-    this.progress.install();
-};
-
-Tracker.prototype.addLog = function(log) {
-    this.logs.push(log);
-
-    for(interval in this.progress) {
-        if(this.progress[interval][log.task])
-            this.progress[interval][log.task].curr += Number(log.amount);
-    }
-
-    this.updateProgress();
-};
-
-Tracker.prototype.updateProgress = function() {
-    this.progress.update();
+    this.progress_view = new GoalsProgressView({ collection: this.goals_collection });
 };
