@@ -32,7 +32,8 @@ const LogsTableRowView = Backbone.View.extend({
         ['goal_id', 'amount', 'datetime'].forEach(col => {
             if(col === 'goal_id') {
                 let goal_model = tracker.goals_collection.get(this.model.get(col));
-                this.$el.append(`<td>${goal_model.get('name')}</td>`);
+                let goal_name = goal_model ? goal_model.get('name') : 'removed';
+                this.$el.append(`<td>${goal_name}</td>`);
             } else {
                 this.$el.append(`<td>${this.model.get(col)}</td>`);
             }
