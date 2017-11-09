@@ -12,6 +12,7 @@
     <script src="scripts/models/goal.js"></script>
     <script src="scripts/models/interval.js"></script>
     <script src="scripts/models/log.js"></script>
+    <script src="scripts/routes/main.js"></script>
     <script src="scripts/tracker.js"></script>
 
     <!-- CSS -->
@@ -19,7 +20,14 @@
     <link rel="stylesheet" href="styles/main.css">
 </head>
 <body class="bg-blanc noir p4">
-    <div class="r mb4">
+    <nav>
+        <ul>
+            <li><a class="blanc bg-noir fl c4 ac bb bw2 p4 mb4" href="#logger">Logger</a></li>
+            <li><a class="blanc bg-noir fl c4 ac bb bw2 p4 mb4" href="#logs">Logs</a></li>
+            <li><a class="blanc bg-noir fl c4 ac bb bw2 p4 mb4" href="#config">Config</a></li>
+        </ul>
+    </nav>
+    <section class="r mb4" id="config-view" style="display: none;">
         <div id="categories" class="c6">
             <h2 class="mb3">Categories</h2>
             <div class="r">
@@ -36,21 +44,27 @@
                 <button type="button" class="add ph2 pv1">Add Goal</button>
             </div>
         </div>
-    </div>
-    <div class="r mb4">
-        <div class="c6">
-            <h2 class="mb3">Logger</h2>
-            <div id="logger"></div>
-        </div>
+    </section>
+    <section class="r mb4" id="logs-table-view" style="display: none;">
         <div class="c6" id="logs">
             <h2 class="mb3">Logs</h2>
             <table id="logs-list"></table>
         </div>
-    </div>
-    <div class="r mb4">
-        <h2 class="mb3">Progress</h2>
-        <div id="progress"></div>
-    </div>
+    </section>
+    <section class="r mb4" id="logger-view">
+        <div class="c6">
+            <h2 class="mb3">Logger</h2>
+            <div id="logger"></div>
+        </div>
+        <div class="c6">
+            <h2>Graph</h2>
+            todo...
+        </div>
+        <div class="r mb4">
+            <h2 class="mb3">Progress</h2>
+            <div id="progress"></div>
+        </div>
+    </section>
     <script>
         var tracker = new Tracker(categories);
         tracker.install();

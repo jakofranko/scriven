@@ -3,6 +3,11 @@ html {
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
+
+nav > ul > li {
+    list-style: none;
+}
+
 .progress {
     padding: 2px;
     position: relative;

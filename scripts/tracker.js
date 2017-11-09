@@ -23,6 +23,13 @@ function Tracker(categories, logs) {
     this.intervals_collection = new IntervalsCollection();
     this.goals_collection = new GoalsCollection();
     this.logs_collection = new LogsCollection();
+
+    // Router
+    this.router = new Router();
+    this.router.on("route:showLogger", function() { this.showLogger(); });
+    this.router.on("route:showLogs", function()   { this.showLogs(); });
+    this.router.on("route:showConfig", function() { this.showConfig(); });
+    Backbone.history.start();
 }
 Tracker.prototype.install = function() {
     // Load views
