@@ -6,6 +6,19 @@ html {
 
 nav > ul > li {
     list-style: none;
+    border-bottom: #f8f8f8 solid;
+}
+
+nav > ul > li:hover {
+    border-bottom: #202020 solid;
+}
+
+nav > ul > li > a {
+    display: block;
+}
+
+nav a:hover {
+    text-decoration: none;
 }
 
 .progress {
@@ -20,7 +33,7 @@ nav > ul > li {
     background: black
 }
 
-.r:after {
+.r:after, nav > ul > li:after {
     content: "";
     display: table;
     clear: both;

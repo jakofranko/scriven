@@ -20,14 +20,14 @@
     <link rel="stylesheet" href="styles/main.css">
 </head>
 <body class="bg-blanc noir p4">
-    <nav>
+    <nav class="r mb5 bsb">
         <ul>
-            <li><a class="blanc bg-noir fl c4 ac bb bw2 p4 mb4" href="#logger">Logger</a></li>
-            <li><a class="blanc bg-noir fl c4 ac bb bw2 p4 mb4" href="#logs">Logs</a></li>
-            <li><a class="blanc bg-noir fl c4 ac bb bw2 p4 mb4" href="#config">Config</a></li>
+            <li class="c4"><a class="noir pv3 bw2" href="#logger">Logger</a></li>
+            <li class="c4"><a class="noir pv3 bw2" href="#logs">Logs</a></li>
+            <li class="c4"><a class="noir pv3 bw2" href="#config">Config</a></li>
         </ul>
     </nav>
-    <section class="r mb4" id="config-view" style="display: none;">
+    <section class="r mb5" id="config-view" style="display: none;">
         <div id="categories" class="c6">
             <h2 class="mb3">Categories</h2>
             <div class="r">
@@ -45,20 +45,22 @@
             </div>
         </div>
     </section>
-    <section class="r mb4" id="logs-table-view" style="display: none;">
+    <section class="r mb5" id="logs-table-view" style="display: none;">
         <div class="c6" id="logs">
             <h2 class="mb3">Logs</h2>
             <table id="logs-list"></table>
         </div>
     </section>
-    <section class="r mb4" id="logger-view">
-        <div class="c6">
-            <h2 class="mb3">Logger</h2>
-            <div id="logger"></div>
-        </div>
-        <div class="c6">
-            <h2>Graph</h2>
-            todo...
+    <section class="r mb5" id="logger-view">
+        <div class="r mb5">
+            <div class="c6">
+                <h2 class="mb3">Logger</h2>
+                <div id="logger"></div>
+            </div>
+            <div class="c6">
+                <h2>Graph</h2>
+                todo...
+            </div>
         </div>
         <div class="r mb4">
             <h2 class="mb3">Progress</h2>
