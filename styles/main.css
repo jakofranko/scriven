@@ -38,3 +38,13 @@ nav a:hover {
     display: table;
     clear: both;
 }
+
+#history {
+    position: relative;
+}
+
+cell {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+}
