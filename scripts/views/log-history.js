@@ -16,7 +16,6 @@ const LogDayHistoryView = Backbone.View.extend({
         let curr_date, date_str, curr_day_logs, day_progress, day_complete, cell, x, y = 0;
 
         // Fetch the daily goals
-        debugger;
         const day_interval = tracker.intervals_collection.findWhere({ name: 'day' });
         const day_goals = tracker.goals_collection.where({ interval_id: day_interval.get('id') });
         const goal_map = day_goals.reduce((map, goal) => {
@@ -30,11 +29,9 @@ const LogDayHistoryView = Backbone.View.extend({
         }));
 
         this.$el.html(null);
-        for(let i = 0; i < day; i++) {
+        for(let i = 0; i <= day; i++) {
             // Fetch logs for this day
             curr_date = new Date(year, 0, i);
-            if(now.getDate() == curr_date.getDate())
-                debugger;
             date_str = `${year}-${this.padZero(curr_date.getMonth() + 1)}-${this.padZero(curr_date.getDate())}`;
             curr_day_logs = this.getDayLogs(day_logs, date_str);
 
@@ -61,14 +58,15 @@ const LogDayHistoryView = Backbone.View.extend({
                 }
             }
 
-            x = ((i % 7) * cell_size) * cell_pad;
-            y = i % 7 === 0 ? Math.floor(i / 7) * cell_size * cell_pad : y;
+            x = i % 7 === 0 ? Math.floor(i / 7) * cell_size * cell_pad : x;
+            y = ((i % 7) * cell_size) * cell_pad;
 
             cell = document.createElement("cell");
-            cell.classList = "br4 ba";
+            cell.classList = "br4";
             cell.style.top = y + "px";
             cell.style.left = x + "px";
-            cell.style.background.color = day_complete ? "rebeccapurple" : "none";
+            cell.style.background = day_complete ? "rebeccapurple" : "none";
+            cell.dataset.date = curr_date;
 
             this.$el.append(cell);
         }
