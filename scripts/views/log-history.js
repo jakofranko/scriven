@@ -11,8 +11,8 @@ const LogDayHistoryView = Backbone.View.extend({
         const diff = (now - start) + ((start.getTimezoneOffset() - now.getTimezoneOffset()) * 60 * 1000);
         const oneDay = 1000 * 60 * 60 * 24;
         const day = Math.floor(diff / oneDay);
-        const cell_size = 5;
-        const cell_pad = 2;
+        const cell_size = 8;
+        const cell_pad = 1.1;
         let curr_date, date_str, curr_day_logs, day_progress, day_complete, cell, x, y = 0;
 
         // Fetch the daily goals
@@ -63,6 +63,8 @@ const LogDayHistoryView = Backbone.View.extend({
 
             cell = document.createElement("cell");
             cell.classList = "br4";
+            cell.style.height = cell_size + "px";
+            cell.style.width = cell_size + "px";
             cell.style.top = y + "px";
             cell.style.left = x + "px";
             cell.style.background = day_complete ? "rebeccapurple" : "none";
