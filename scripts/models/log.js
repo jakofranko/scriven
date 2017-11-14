@@ -5,7 +5,7 @@ const LogModel = Backbone.Model.extend({
         datetime: new Date().toISOString()
     },
     validate: function(attrs, options) {
-        if(!attrs.goal_id)
+        if(attrs.goal_id === "")
             return "You must pick a goal/task";
         if(!attrs.amount)
             return "Please specify an amount";
