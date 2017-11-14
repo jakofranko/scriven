@@ -66,11 +66,17 @@ const LoggerView = Backbone.View.extend({
         'click .submit': 'onSubmit'
     },
     onSubmit: function() {
+        debugger;
         const inputs = this.$el.find('input').add('select');
         let log = new LogModel(),
             attrs = {};
 
-        inputs.each((i, el) => attrs[el.name] = el.value);
+        inputs.each((i, el) => {
+            if(el.type === "number" || el.name === "goal_id")
+                attrs[el.name] = +el.value;
+            else
+                attrs[el.name] = el.value;
+        });
 
         log.set(attrs);
 
