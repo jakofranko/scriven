@@ -15,7 +15,6 @@ const GoalsDropdownView = Backbone.View.extend({
     className: 'goal-select',
     initialize: function() {
         this.$el.attr('name', 'goal_id');
-        this.collection.fetch();
         this.listenTo(this.collection, 'sync change', this.render);
     },
     render: function() {
