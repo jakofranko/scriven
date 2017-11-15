@@ -5,7 +5,7 @@ const LoggerView = Backbone.View.extend({
     initialize: function() {
         // Since the only thing that needs to be updated is the dropdown, and this updates itself,
         // place all elements on initialization
-        let goal_picker   = new GoalsDropdownView({ collection: tracker.goals_collection }).render(),
+        let goal_picker   = new GoalsDropdownView({ collection: scriven.goals_collection }).render(),
             goal_label    = document.createElement('label'),
             amount_input  = document.createElement('input'),
             amount_label  = document.createElement('label'),

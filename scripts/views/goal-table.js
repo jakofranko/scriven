@@ -12,11 +12,11 @@ const GoalsTableRowView = Backbone.View.extend({
         for(let i = 0; i < attrs.length; i++) {
             if(attrs[i] === 'category_id') {
                 let category_id = this.model.get(attrs[i]);
-                let category_model = tracker.categories_collection.get(category_id);
+                let category_model = scriven.categories_collection.get(category_id);
                 html += `<td>${category_model ? category_model.get('name') : 'unknown'}</td>`;
             } else if(attrs[i] === 'interval_id') {
                 let interval_id = this.model.get(attrs[i]);
-                let interval_model = tracker.intervals_collection.get(interval_id);
+                let interval_model = scriven.intervals_collection.get(interval_id);
                 html += `<td>${interval_model ? interval_model.get('name') : 'unknown'}</td>`;
             } else {
                 html += `<td>${this.model.get(attrs[i])}</td>`;
@@ -50,8 +50,8 @@ const GoalsTableRowView = Backbone.View.extend({
         let $name = $(`<input type='text' name='name' value='${this.model.get('name')}' placeholder='name'/>`),
             $unit= $(`<input type='text' name='unit' value='${this.model.get('unit')}' placeholder='unit'/>`),
             $amount= $(`<input type='text' name='amount' value='${this.model.get('amount')}' placeholder='amount'/>`),
-            categories = new CategoriesDropdownView({ collection: tracker.categories_collection }).render().$el,
-            intervals = new IntervalsDropdownView({collection: tracker.intervals_collection }).render().$el,
+            categories = new CategoriesDropdownView({ collection: scriven.categories_collection }).render().$el,
+            intervals = new IntervalsDropdownView({collection: scriven.intervals_collection }).render().$el,
             inputs = [$name, $unit, $amount, categories, intervals],
             $td;
 
@@ -104,10 +104,10 @@ const NewGoalsTableRowView = Backbone.View.extend({
         attrs.forEach(attr => {
             td = document.createElement('td');
             if(attr === 'category_id') {
-                select = new CategoriesDropdownView({ collection: tracker.categories_collection });
+                select = new CategoriesDropdownView({ collection: scriven.categories_collection });
                 $(td).append(select.render().$el);
             } else if(attr === 'interval_id') {
-                select = new IntervalsDropdownView({collection: tracker.intervals_collection });
+                select = new IntervalsDropdownView({collection: scriven.intervals_collection });
                 $(td).append(select.render().$el);
             } else if(attr === 'amount') {
                 $(td).append(`<input type="number" name="${attr}" class="wf" placeholder="${attr}"/>`);

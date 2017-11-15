@@ -1,5 +1,5 @@
-// tracker.categories_collection set in tracker.js
-// tracker.intervals_collection set in tracker.js
+// scriven.categories_collection set in scriven.js
+// scriven.intervals_collection set in scriven.js
 
 const GoalModel = Backbone.Model.extend({
     defaults: {

@@ -1,8 +1,4 @@
-/**
- * Created by jdfrankl on 10/5/17.
- */
-
-// The tracker will take my logs, and compare them to my goals and milestones in order to give me an idea of three things:
+// The scriven will take my logs, and compare them to my goals and milestones in order to give me an idea of three things:
 // 1) What I've done -- To be able to view my areas of expertise (or lack), and effectively communicate my value to others
 // 2) What I'm doing -- Awareness is necessary for effective and efficient change
 // 3) What I need to do -- Given my actions, past and present, I can make intelligent decisions on what to do next
@@ -11,8 +7,9 @@
 // - http://wiki.xxiivv.com/Horaire
 // - https://www.craze.co.uk/chronologicon/
 // - http://log.v-os.ca/
+// - https://joshavanier.github.io/wiki/horology/log/
 
-function Tracker(categories, logs) {
+function Scriven(categories, logs) {
     this.categories = categories;
     this.logs = logs || [];
     this.progress = {};
@@ -31,7 +28,7 @@ function Tracker(categories, logs) {
     this.router.on("route:showConfig", function() { this.showConfig(); });
     Backbone.history.start();
 }
-Tracker.prototype.install = function() {
+Scriven.prototype.install = function() {
     // Load views
     this.categories_view = new CategoriesView({ collection: this.categories_collection });
     this.goals_view = new GoalsTableView({ collection: this.goals_collection });

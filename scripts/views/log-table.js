@@ -7,7 +7,7 @@ const LogsTableRowView = Backbone.View.extend({
         this.$el.html(null);
         ['goal_id', 'amount', 'datetime'].forEach(col => {
             if(col === 'goal_id') {
-                let goal_model = tracker.goals_collection.get(this.model.get(col));
+                let goal_model = scriven.goals_collection.get(this.model.get(col));
                 let goal_name = goal_model ? goal_model.get('name') : 'removed';
                 this.$el.append(`<td>${goal_name}</td>`);
             } else {
@@ -26,7 +26,7 @@ const LogsTableRowView = Backbone.View.extend({
         'click .update': 'onUpdate'
     },
     onEdit: function() {
-        let goal_picker = new GoalsDropdownView({ collection: tracker.goals_collection }).render().$el,
+        let goal_picker = new GoalsDropdownView({ collection: scriven.goals_collection }).render().$el,
             amount = document.createElement('input'),
             date = document.createElement('input'),
             update = document.createElement('button'),
@@ -76,7 +76,7 @@ const LogsTableView = Backbone.View.extend({
     initialize: function() {
         this.collection.fetch();
         this.listenTo(this.collection, 'sync change add remove', this.render);
-        this.listenTo(tracker.goals_collection, 'sync change add remove', this.render);
+        this.listenTo(scriven.goals_collection, 'sync change add remove', this.render);
     },
     render: function() {
         let $table = this.$("#logs-list"),

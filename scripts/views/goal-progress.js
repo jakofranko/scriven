@@ -5,8 +5,8 @@ const GoalProgressBar = Backbone.View.extend({
         this.listenTo(this.model, 'destroy', this.remove);
     },
     render: function() {
-        const interval = tracker.intervals_collection.get(this.model.get('interval_id')).get('name');
-        const logs = tracker.logs_collection.where({ goal_id: this.model.get('id') });
+        const interval = scriven.intervals_collection.get(this.model.get('interval_id')).get('name');
+        const logs = scriven.logs_collection.where({ goal_id: this.model.get('id') });
         const progress_bar = document.createElement('div');
         let percentage;
 
@@ -107,7 +107,7 @@ const GoalsProgressView = Backbone.View.extend({
     el: "#progress",
     initialize: function() {
         this.listenTo(this.collection, 'sync change add remove', this.render);
-        this.listenTo(tracker.logs_collection, 'sync change add remove', this.render);
+        this.listenTo(scriven.logs_collection, 'sync change add remove', this.render);
     },
     render: function() {
         const interval_ids = _.uniq(this.collection.pluck("interval_id")).filter(id => typeof id === "number"),
@@ -118,7 +118,7 @@ const GoalsProgressView = Backbone.View.extend({
         this.$el.html(null);
         interval_ids.forEach(interval_id => {
             col = $(`<div class='c${col_size} pr3' />`);
-            interval = tracker.intervals_collection.get(interval_id);
+            interval = scriven.intervals_collection.get(interval_id);
             h = $(`<h3 class="mb3">${interval.get('name')}</h3>`);
             col.append(h);
 

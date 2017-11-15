@@ -16,8 +16,8 @@ const LogDayHistoryView = Backbone.View.extend({
         let curr_date, date_str, curr_day_logs, day_progress, day_complete, cell, x, y = 0;
 
         // Fetch the daily goals
-        const day_interval = tracker.intervals_collection.findWhere({ name: 'day' });
-        const day_goals = tracker.goals_collection.where({ interval_id: day_interval.get('id') });
+        const day_interval = scriven.intervals_collection.findWhere({ name: 'day' });
+        const day_goals = scriven.goals_collection.where({ interval_id: day_interval.get('id') });
         const goal_map = day_goals.reduce((map, goal) => {
             map[goal.get('id')] = goal.get('amount');
             return map;
