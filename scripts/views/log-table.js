@@ -62,7 +62,6 @@ const LogsTableRowView = Backbone.View.extend({
             log[el.name] = $(el).val();
         });
 
-        debugger;
         this.model.set(log);
         if(this.model.isValid())
             this.model.save();

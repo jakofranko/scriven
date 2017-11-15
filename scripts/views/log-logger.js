@@ -66,7 +66,6 @@ const LoggerView = Backbone.View.extend({
         'click .submit': 'onSubmit'
     },
     onSubmit: function() {
-        debugger;
         const inputs = this.$el.find('input').add('select');
         let log = new LogModel(),
             attrs = {};
