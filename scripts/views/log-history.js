@@ -1,7 +1,7 @@
 const LogDayHistoryView = Backbone.View.extend({
     el: "#history",
     initialize: function() {
-        this.listenTo(this.collection, 'sync change add delete', this.render);
+        this.listenTo(this.collection, 'sync change add delete remove', this.render);
     },
     render: function() {
         // https://stackoverflow.com/questions/8619879/javascript-calculate-the-day-of-the-year-1-366
