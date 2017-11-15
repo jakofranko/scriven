@@ -9,11 +9,7 @@
 // - http://log.v-os.ca/
 // - https://joshavanier.github.io/wiki/horology/log/
 
-function Scriven(categories, logs) {
-    this.categories = categories;
-    this.logs = logs || [];
-    this.progress = {};
-
+function Scriven() {
     // TODO: utilize promises so that we only install after all the collections have been fetched
     // Load collections
     this.categories_collection = new CategoriesCollection();
