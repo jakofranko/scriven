@@ -15,7 +15,7 @@ const LogDayHistoryView = Backbone.View.extend({
         const cell_pad = 1.1;
         let curr_date, date_str, curr_day_logs, day_progress, day_complete, cell, x, y = 0;
 
-        // Fetch the daily goals
+        // Get the daily goals
         const day_interval = scriven.intervals_collection.findWhere({ name: 'day' });
         const day_goals = scriven.goals_collection.where({ interval_id: day_interval.get('id') });
         const goal_map = day_goals.reduce((map, goal) => {
@@ -23,14 +23,14 @@ const LogDayHistoryView = Backbone.View.extend({
             return map;
         }, {});
 
-        // Fetch daily logs
+        // Get daily logs
         const day_logs = _.flatten(day_goals.map(goal => {
            return this.collection.where({ goal_id: goal.get('id') });
         }));
 
         this.$el.html(null);
         for(let i = 0; i <= day; i++) {
-            // Fetch logs for this day
+            // Get logs for this day
             curr_date = new Date(year, 0, i);
             date_str = `${year}-${this.padZero(curr_date.getMonth() + 1)}-${this.padZero(curr_date.getDate())}`;
             curr_day_logs = this.getDayLogs(day_logs, date_str);

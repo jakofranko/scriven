@@ -60,7 +60,6 @@ const CategoryItemView = Backbone.View.extend({
 const CategoriesView = Backbone.View.extend({
     el: "#categories",
     initialize: function() {
-        this.collection.fetch();
         this.listenTo(this.collection, 'sync change', this.render);
     },
     render: function() {
@@ -103,7 +102,6 @@ const CategoriesDropdownView = Backbone.View.extend({
     tagName: 'select',
     initialize: function() {
         this.$el.attr('name', 'category_id');
-        this.collection.fetch();
         this.listenTo(this.collection, 'sync change', this.render);
     },
     render: function() {

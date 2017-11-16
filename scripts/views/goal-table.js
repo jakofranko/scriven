@@ -146,7 +146,6 @@ const NewGoalsTableRowView = Backbone.View.extend({
 const GoalsTableView = Backbone.View.extend({
     el: '#goals',
     initialize: function() {
-        this.collection.fetch();
         this.listenTo(this.collection, 'sync change', this.render);
         this.listenTo(this.collection, 'invalid', this.onInvalid);
     },

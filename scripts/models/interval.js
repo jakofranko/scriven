@@ -8,10 +8,6 @@ const IntervalModel = Backbone.Model.extend({
 const IntervalsCollection = Backbone.Collection.extend({
     url: "http://localhost:3000/intervals",
     model: IntervalModel,
-    initialize: function() {
-        // Since this is used by a couple of views, fetch the data immediately
-        this.fetch();
-    },
     parse: function(data) {
         return data.intervals;
     }
@@ -34,7 +30,6 @@ const IntervalsDropdownView = Backbone.View.extend({
     tagName: 'select',
     initialize: function() {
         this.$el.attr('name', 'interval_id');
-        this.collection.fetch();
         this.listenTo(this.collection, 'sync', this.render);
     },
     render: function() {
