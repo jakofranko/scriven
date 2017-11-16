@@ -10,12 +10,11 @@
 // - https://joshavanier.github.io/wiki/horology/log/
 
 function Scriven() {
-    // TODO: utilize promises so that we only install after all the collections have been fetched
-    // Load collections
-    this.categories_collection = new CategoriesCollection();
-    this.intervals_collection = new IntervalsCollection();
-    this.goals_collection = new GoalsCollection();
-    this.logs_collection = new LogsCollection();
+    // Initialize collections
+    this.categories_collection  = new CategoriesCollection();
+    this.intervals_collection   = new IntervalsCollection();
+    this.goals_collection       = new GoalsCollection();
+    this.logs_collection        = new LogsCollection();
 
     // Router
     this.router = new Router();
@@ -26,10 +25,16 @@ function Scriven() {
 }
 Scriven.prototype.install = function() {
     // Load views
-    this.categories_view = new CategoriesView({ collection: this.categories_collection });
-    this.goals_view = new GoalsTableView({ collection: this.goals_collection });
-    this.logs_table_view = new LogsTableView({ collection: this.logs_collection });
-    this.logger_view = new LoggerView({ collection: this.logs_collection });
-    this.progress_view = new GoalsProgressView({ collection: this.goals_collection });
-    this.history_view = new LogDayHistoryView({ collection: this.logs_collection });
+    this.categories_view    = new CategoriesView({ collection: this.categories_collection });
+    this.goals_view         = new GoalsTableView({ collection: this.goals_collection });
+    this.logs_table_view    = new LogsTableView({ collection: this.logs_collection });
+    this.logger_view        = new LoggerView({ collection: this.logs_collection });
+    this.progress_view      = new GoalsProgressView({ collection: this.goals_collection });
+    this.history_view       = new LogDayHistoryView({ collection: this.logs_collection });
+
+    // Finally, fetch the data
+    this.categories_collection.fetch();
+    this.intervals_collection.fetch();
+    this.goals_collection.fetch();
+    this.logs_collection.fetch();
 };
