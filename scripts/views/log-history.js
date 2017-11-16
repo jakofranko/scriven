@@ -45,7 +45,7 @@ const LogDayHistoryView = Backbone.View.extend({
             }, {});
 
             // Compare today's progress with the goal amount
-            day_complete = true;
+            day_complete = !!day_logs.length; // if day_logs is empty, goal_map will be empty
             for(let goal_id in goal_map) {
                 if(!goal_map[goal_id]) throw new Error("whaaaa....");
                 if(!day_progress[goal_id]) {
