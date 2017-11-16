@@ -10,3 +10,4 @@ Scriven's front-end utilizes [Josh Avenir's](https://github.com/joshavanier) [Ma
 * Improve/add visualizations for month and weekly progress
 * Detail view per day/week/month to allow for better analysis of unmet goals
 * Add milestone functionality for one-time achievments related to specific goals
+* Security layer for authenticating against Ledger
