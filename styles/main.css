@@ -4,13 +4,19 @@ html {
     box-sizing: border-box;
 }
 
+nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
+
 nav > ul > li {
     list-style: none;
-    border-bottom: #f8f8f8 solid;
+    border-bottom: #202020 solid;
 }
 
 nav > ul > li:hover {
-    border-bottom: #202020 solid;
+    border-bottom: #f8f8f8 solid;
 }
 
 nav > ul > li > a {
