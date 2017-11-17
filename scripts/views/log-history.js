@@ -83,7 +83,7 @@ const LogDayHistoryView = Backbone.View.extend({
     getDayLogs: function(logs, date) {
         let day_logs = [];
         logs.forEach(log => {
-            if(log.get('datetime') === date) day_logs.push(log);
+            if(log.get('date') === date) day_logs.push(log);
         });
         return day_logs;
     }

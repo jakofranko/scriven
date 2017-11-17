@@ -42,7 +42,7 @@ const GoalProgressBar = Backbone.View.extend({
             date,
             day;
         logs.forEach(log => {
-            date = log.get('datetime');
+            date = log.get('date');
             day = Number(date.split("-")[2]);
             if(day === now.getDate()) today.push(log);
         });
@@ -60,7 +60,7 @@ const GoalProgressBar = Backbone.View.extend({
             date,
             day;
         logs.forEach(log => {
-            date = log.get('datetime');
+            date = log.get('date');
             day = Number(date.split("-")[2]);
             if(day <= weekEnd && day >= weekBeginning) week.push(log);
         });
@@ -76,7 +76,7 @@ const GoalProgressBar = Backbone.View.extend({
             date,
             log_month;
         logs.forEach(log => {
-            date = log.get('datetime');
+            date = log.get('date');
             log_month = Number(date.split("-")[1]);
             if(log_month === now.getMonth() + 1) month.push(log);
         });
@@ -92,7 +92,7 @@ const GoalProgressBar = Backbone.View.extend({
             date,
             log_year;
         logs.forEach(log => {
-            date = log.get('datetime');
+            date = log.get('date');
             log_year = Number(date.split("-")[0]);
             if(log_year === now.getYear()) year.push(log);
         });

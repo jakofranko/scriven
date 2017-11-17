@@ -5,60 +5,72 @@ const LoggerView = Backbone.View.extend({
     initialize: function() {
         // Since the only thing that needs to be updated is the dropdown, and this updates itself,
         // place all elements on initialization
-        let goal_picker   = new GoalsDropdownView({ collection: scriven.goals_collection }).render(),
-            goal_label    = document.createElement('label'),
-            amount_input  = document.createElement('input'),
-            amount_label  = document.createElement('label'),
-            date_picker   = document.createElement('input'),
-            date_label    = document.createElement('label'),
-            submit        = document.createElement('button'),
-            row = document.createElement('div'),
-            col3 = document.createElement('div'),
-            col, r;
+        let r;
+        let description_input   = document.createElement('textarea'),
+            description_label   = document.createElement('label'),
+            goal_picker         = new GoalsDropdownView({ collection: scriven.goals_collection }).render().$el,
+            goal_label          = document.createElement('label'),
+            amount_input        = document.createElement('input'),
+            amount_label        = document.createElement('label'),
+            date_picker         = document.createElement('input'),
+            date_label          = document.createElement('label'),
+            duration_input      = document.createElement('input'),
+            duration_label      = document.createElement('label'),
+            submit              = document.createElement('button'),
+            row                 = document.createElement('div'),
+            elements = [
+                description_label,
+                description_input,
+                goal_label,
+                goal_picker,
+                amount_label,
+                amount_input,
+                date_label,
+                date_picker,
+                duration_label,
+                duration_input,
+                submit
+            ];
 
         // Set attributes and text
-        row.classList = 'r';
-        col3.classList = 'c3';
+        description_input.name = 'description';
+        description_input.classList = 'mb3';
+        description_input.autofocus = true;
+        description_label.textContent = "Description";
+        description_label.classList = "description-label mr3 mb3";
+        goal_picker.addClass("mb3");
         goal_label.textContent = "Goal/Task";
-        goal_label.classList = "mr3 mb3";
+        goal_label.classList = "mb3";
         amount_input.type = 'number';
+        amount_input.classList = 'mb3';
         amount_input.name = 'amount';
         amount_label.textContent = "Amount";
         amount_label.classList = "amount-label mr3 mb3";
         date_picker.type = "date";
-        date_picker.name = "datetime";
+        date_picker.classList = 'mb3';
+        date_picker.name = "date";
         date_label.textContent = "Select Date & Time";
         date_label.classList = "mr3 mb3";
+        duration_input.type = 'number';
+        duration_input.classList = 'mb3';
+        duration_input.step = '0.01';
+        duration_input.name = 'duration';
+        duration_label.textContent = "Duration";
+        duration_label.classList = "duration-label mr3 mb3";
         submit.type = "button";
         submit.classList = "submit pv2 ph3";
         submit.textContent = "Log";
+        row.classList = 'r';
 
         // Place elements
-        r = row.cloneNode();
-        col = col3.cloneNode();
-        col.appendChild(goal_label);
-        $(col).append(goal_picker.$el);
-        r.appendChild(col);
-
-        col = col3.cloneNode();
-        col.appendChild(amount_label);
-        col.appendChild(amount_input);
-        r.appendChild(col);
-
-        col = col3.cloneNode();
-        col.appendChild(date_label);
-        col.appendChild(date_picker);
-        r.appendChild(col);
-
-        col = col3.cloneNode();
-        col.appendChild(submit);
-        r.appendChild(col);
-
-        this.$el.append(r);
+        elements.forEach(element => {
+           this.$el.append(element);
+           this.$el.append("<br />");
+        });
 
         // Add an additional row for error messages
         r = row.cloneNode();
-        r.classList = "errors red mv3";
+        r.classList.add("errors", "red", "mv3");
 
         this.$el.append(r);
     },
