@@ -4,9 +4,12 @@ A tool for logging goal-based activity. As any good scrivener would know, scrive
 
 Scriven's front-end utilizes [Josh Avenir's](https://github.com/joshavanier) [Macian](https://github.com/joshavanier/macian) library for styling/layout.
 
+## Setup
+
+Scriven requires a running instance of the [Ledger](https://github.com/jakofranko/ledger) to run.
+
 ## TODO
 
-* Add inputs to the logger to allow for non-goal logs, descriptions, and duration
 * Improve/add visualizations for month and weekly progress
 * Detail view per day/week/month to allow for better analysis of unmet goals
 * Add milestone functionality for one-time achievments related to specific goals
