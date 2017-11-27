@@ -83,6 +83,9 @@ const LoggerView = Backbone.View.extend({
             attrs = {};
 
         inputs.each((i, el) => {
+            if(el.value === "")
+                return;
+
             if(el.type === "number" || el.name === "goal_id")
                 attrs[el.name] = +el.value;
             else
