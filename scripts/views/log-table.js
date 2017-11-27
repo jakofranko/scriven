@@ -8,7 +8,7 @@ const LogsTableRowView = Backbone.View.extend({
         ['description', 'goal_id', 'amount', 'date', 'duration'].forEach(col => {
             if(col === 'goal_id') {
                 let goal_model = scriven.goals_collection.get(this.model.get(col));
-                let goal_name = goal_model ? goal_model.get('name') : 'removed';
+                let goal_name = goal_model ? goal_model.get('name') : '';
                 this.$el.append(`<td>${goal_name}</td>`);
             } else {
                 this.$el.append(`<td>${this.model.get(col)}</td>`);
