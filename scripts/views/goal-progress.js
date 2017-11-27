@@ -54,7 +54,7 @@ const GoalProgressBar = Backbone.View.extend({
     calculateWeekProgress: function(logs) {
         const now = new Date(),
             weekBeginning = now.getDate() - now.getDay(),
-            weekEnd = now.getDate() + now.getDay();
+            weekEnd = now.getDate() + (6 - now.getDay());
         let week = [],
             total = 0,
             date,
