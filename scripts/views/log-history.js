@@ -7,7 +7,7 @@ const LogDayHistoryView = Backbone.View.extend({
         // TODO: Clean up this mess. Vom.
         const now = new Date();
         const day = now.getDayNumber();
-        const year = now.getYear();
+        const year = now.getFullYear();
         const cell_size = 10;
         const cell_pad = 1.1;
         let curr_date, date_str, curr_day_logs, day_progress, percent_complete, cell, x = 0, y = 0;
@@ -93,7 +93,7 @@ const LogWeekHistoryView = Backbone.View.extend({
         // TODO: Clean up this mess. Vom.
         const now = new Date();
         const day = now.getDayNumber();
-        const year = now.getYear();
+        const year = now.getFullYear();
         const cell_size = 10;
         const cell_pad = 1.1;
         let curr_date, date_str, curr_week, week_start, week_end, curr_week_logs, week_progress, percent_complete, cell, x = 0, y = 0;
