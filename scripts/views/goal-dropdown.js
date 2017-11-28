@@ -6,6 +6,7 @@ const GoalsDropdownItemView = Backbone.View.extend({
     render: function() {
         this.$el.val(this.model.get('id'));
         this.$el.text(this.model.get('name'));
+        this.$el.data('units', this.model.get('unit'));
         return this;
     }
 });

@@ -12,6 +12,7 @@ const LoggerView = Backbone.View.extend({
             goal_label          = document.createElement('label'),
             amount_input        = document.createElement('input'),
             amount_label        = document.createElement('label'),
+            units_label         = document.createElement('label'),
             date_picker         = document.createElement('input'),
             date_label          = document.createElement('label'),
             duration_input      = document.createElement('input'),
@@ -25,6 +26,7 @@ const LoggerView = Backbone.View.extend({
                 goal_picker,
                 amount_label,
                 amount_input,
+                units_label,
                 date_label,
                 date_picker,
                 duration_label,
@@ -42,10 +44,11 @@ const LoggerView = Backbone.View.extend({
         goal_label.textContent = "Goal/Task";
         goal_label.classList = "mb3";
         amount_input.type = 'number';
-        amount_input.classList = 'mb3';
+        amount_input.classList = 'mb2';
         amount_input.name = 'amount';
         amount_label.textContent = "Amount";
-        amount_label.classList = "amount-label mr3 mb3";
+        amount_label.classList = "amount-label mr3";
+        units_label.classList = "units-label mb4 f6";
         date_picker.type = "date";
         date_picker.classList = 'mb3';
         date_picker.name = "date";
@@ -75,7 +78,8 @@ const LoggerView = Backbone.View.extend({
         this.$el.append(r);
     },
     events: {
-        'click .submit': 'onSubmit'
+        'click .submit': 'onSubmit',
+        'change .goal-select': 'onChange'
     },
     onSubmit: function() {
         const inputs = this.$el.find('input').add('select').add('textarea');
@@ -104,5 +108,9 @@ const LoggerView = Backbone.View.extend({
             // Add a validation message
             this.$('.errors').text(log.validationError);
         }
+    },
+    onChange: function(e) {
+        var units = $(e.target).find(":selected").data('units');
+        this.$('.units-label').html(units);
     }
 });
