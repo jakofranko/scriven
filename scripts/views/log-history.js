@@ -94,11 +94,11 @@ const LogWeekHistoryView = Backbone.View.extend({
         const now = new Date();
         const day = now.getDayNumber();
         const year = now.getFullYear();
-        const cell_size = 10;
         const cell_pad = 1.1;
-        let curr_date, date_str, curr_week, week_start, week_end, curr_week_logs, week_progress, percent_complete, cell, x = 0, y = 0;
+        const cell_size = (this.$el.width() / 52) - (cell_pad * 2);
+        let curr_date, date_str, curr_day_logs, week_progress, percent_complete, cell, x = 0, y = 100;
 
-        // Get the daily goals
+        // Get the weekly goals
         const week_interval = scriven.intervals_collection.findWhere({ name: 'week' });
         const week_goals = scriven.goals_collection.where({ interval_id: week_interval.get('id') });
         const goal_map = week_goals.reduce((map, goal) => {
