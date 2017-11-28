@@ -30,7 +30,8 @@ Scriven.prototype.install = function() {
     this.logs_table_view    = new LogsTableView({ collection: this.logs_collection });
     this.logger_view        = new LoggerView({ collection: this.logs_collection });
     this.progress_view      = new GoalsProgressView({ collection: this.goals_collection });
-    this.history_view       = new LogDayHistoryView({ collection: this.logs_collection });
+    this.history_day_view   = new LogDayHistoryView({ collection: this.logs_collection });
+    this.history_week_view  = new LogWeekHistoryView({ collection: this.logs_collection });
 
     // Finally, fetch the data
     this.categories_collection.fetch();
