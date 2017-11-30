@@ -3,7 +3,7 @@ const LogModel = Backbone.Model.extend({
         description: "",
         goal_id: null,
         amount: null,
-        date: `${new Date().getYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`,
+        date: `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`,
         duration: null
     },
     validate: function(attrs, options) {
