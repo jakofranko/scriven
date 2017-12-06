@@ -8,8 +8,8 @@ const LogDayHistoryView = Backbone.View.extend({
         const now = new Date();
         const day = now.getDayNumber();
         const year = now.getFullYear();
-        const cell_size = 10;
-        const cell_pad = 1.1;
+        const cell_pad = 1.5;
+        const cell_size = (this.$el.width() / 52) / cell_pad;
         let curr_date, date_str, curr_day_logs, day_progress, percent_complete, cell, x = 0, y = 0;
 
         // Get the daily goals
