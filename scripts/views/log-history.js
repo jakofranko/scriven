@@ -13,19 +13,17 @@ const LogDayHistoryView = Backbone.View.extend({
         let curr_date, date_str, curr_day_logs, day_progress, percent_complete, cell, x = 0, y = 0;
 
         // Get the daily goals
-        const day_interval = scriven.intervals_collection.findWhere({ name: 'day' });
-        const day_goals = scriven.goals_collection.where({ interval_id: day_interval.get('id') });
-        const goal_map = day_goals.reduce((map, goal) => {
-            map[goal.get('id')] = goal.get('amount');
-            return map;
-        }, {});
+        const goal_map = scriven.getGoalsByInterval('day');
 
-        // Get daily logs
-        const day_logs = _.flatten(day_goals.map(goal => {
-           return this.collection.where({ goal_id: goal.get('id') });
+        // Get daily logs by fetching them per goal_id
+        const day_logs = _.flatten(Object.keys(goal_map).map(goal_id => {
+           return this.collection.where({ goal_id: +goal_id });
         }));
 
+        // Clear out existing cells
         this.$('.day-cell').remove();
+
+        // Place new cells
         for(let i = 0; i <= day; i++) {
             // Get logs for this day
             curr_date = new Date(year, 0, i);
@@ -94,21 +92,16 @@ const LogWeekHistoryView = Backbone.View.extend({
         const now = new Date();
         const day = now.getDayNumber();
         const year = now.getFullYear();
-        const cell_pad = 1.1;
-        const cell_size = (this.$el.width() / 52) - (cell_pad * 2);
-        let curr_date, date_str, curr_day_logs, week_progress, percent_complete, cell, x = 0, y = 100;
+        const cell_pad = 1.5;
+        const cell_size = (this.$el.width() / 52) / cell_pad;
+        let curr_date, date_str, curr_day_logs, week_progress, percent_complete, cell, x = 0, y = 150;
 
         // Get the weekly goals
-        const week_interval = scriven.intervals_collection.findWhere({ name: 'week' });
-        const week_goals = scriven.goals_collection.where({ interval_id: week_interval.get('id') });
-        const goal_map = week_goals.reduce((map, goal) => {
-            map[goal.get('id')] = goal.get('amount');
-            return map;
-        }, {});
+        const goal_map = scriven.getGoalsByInterval('week');
 
         // Get weekly logs
-        const week_logs = _.flatten(week_goals.map(goal => {
-            return this.collection.where({ goal_id: goal.get('id') });
+        const week_logs = _.flatten(Object.keys(goal_map).map(goal_id => {
+            return this.collection.where({ goal_id: +goal_id });
         }));
 
         this.$('.week-cell').remove();

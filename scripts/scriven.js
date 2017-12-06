@@ -39,3 +39,11 @@ Scriven.prototype.install = function() {
     this.goals_collection.fetch();
     this.logs_collection.fetch();
 };
+Scriven.prototype.getGoalsByInterval = function(interval) {
+    const i = this.intervals_collection.findWhere({ name: interval });
+    const goals = this.goals_collection.where({ interval_id: i.get('id') });
+    return goals.reduce((map, goal) => {
+        map[goal.get('id')] = goal.get('amount');
+        return map;
+    }, {});
+};
