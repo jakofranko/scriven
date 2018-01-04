@@ -39,12 +39,15 @@ const GoalProgressBar = Backbone.View.extend({
         const now = new Date();
         let today = [],
             total = 0,
-            date,
-            day;
+            date, day, month, year;
+
         logs.forEach(log => {
-            date = log.get('date');
-            day = Number(date.split("-")[2]);
-            if(day === now.getDate()) today.push(log);
+            date = log.get('date').split("-");
+            day = Number(date[2]);
+            month = Number(date[1]);
+            year = Number(date[0]);
+            if(day === now.getDate() && month === now.getMonth() + 1 && year === now.getFullYear())
+                today.push(log);
         });
 
         today.forEach(log => total += log.get('amount'));
@@ -57,12 +60,14 @@ const GoalProgressBar = Backbone.View.extend({
             weekEnd = now.getDate() + (6 - now.getDay());
         let week = [],
             total = 0,
-            date,
-            day;
+            date, day, month, year;
         logs.forEach(log => {
-            date = log.get('date');
-            day = Number(date.split("-")[2]);
-            if(day <= weekEnd && day >= weekBeginning) week.push(log);
+            date = log.get('date').split("-");
+            day = Number(date[2]);
+            month = Number(date[1]);
+            year = Number(date[0]);
+            if(day <= weekEnd && day >= weekBeginning && month === now.getMonth() + 1 && year === now.getFullYear())
+                week.push(log);
         });
 
         week.forEach(log => total += log.get('amount'));
@@ -73,12 +78,13 @@ const GoalProgressBar = Backbone.View.extend({
         const now = new Date();
         let month = [],
             total = 0,
-            date,
-            log_month;
+            date, log_month, year;
         logs.forEach(log => {
-            date = log.get('date');
-            log_month = Number(date.split("-")[1]);
-            if(log_month === now.getMonth() + 1) month.push(log);
+            date = log.get('date').split("-");
+            log_month = Number(date[1]);
+            year = Number(date[0]);
+            if(log_month === now.getMonth() + 1 && year === now.getFullYear())
+                month.push(log);
         });
 
         month.forEach(log => total += log.get('amount'));
@@ -94,7 +100,8 @@ const GoalProgressBar = Backbone.View.extend({
         logs.forEach(log => {
             date = log.get('date');
             log_year = Number(date.split("-")[0]);
-            if(log_year === now.getYear()) year.push(log);
+            if(log_year === now.getYear())
+                year.push(log);
         });
 
         year.forEach(log => total += log.get('amount'));
