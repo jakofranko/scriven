@@ -33,6 +33,9 @@ Scriven.prototype.install = function() {
     this.history_day_view   = new LogDayHistoryView({ collection: this.logs_collection });
     this.history_week_view  = new LogWeekHistoryView({ collection: this.logs_collection });
 
+    // Cross-view event-listeners
+    this.logger_view.$("#log-date").change(this.handleDateChange.bind(this));
+
     // Finally, fetch the data
     this.categories_collection.fetch();
     this.intervals_collection.fetch();
@@ -46,4 +49,23 @@ Scriven.prototype.getGoalsByInterval = function(interval) {
         map[goal.get('id')] = goal.get('amount');
         return map;
     }, {});
+};
+Scriven.prototype.handleDateChange = function(e) {
+    let date = new Date(e.target.value + 'T00:00:00'),
+        day = date.getDate(),
+        month = date.getMonth(),
+        year = date.getFullYear();
+
+    // Render progress on change
+    this.progress_view.render();
+
+    // Set corresponding history cell to active
+    this.history_day_view.$('cell.active').removeClass('active');
+    this.history_day_view.$('cell').each((i, el) => {
+        if(el.dataset.date) {
+            let d = new Date(el.dataset.date);
+            if(d.getDate() === day && d.getMonth() === month && d.getFullYear() === year)
+                el.classList.add('active');
+        }
+    });
 };
