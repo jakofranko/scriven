@@ -57,4 +57,9 @@ select, input {
 
 cell {
     position: absolute;
+    cursor: pointer;
+}
+
+cell.active {
+    border: #202020 1px dashed;
 }
