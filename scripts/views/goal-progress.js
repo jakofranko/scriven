@@ -36,7 +36,7 @@ const GoalProgressBar = Backbone.View.extend({
         return this;
     },
     calculateDayProgress: function(logs) {
-        const now = new Date();
+        const now = this.getCurrentDate();
         let today = [],
             total = 0,
             date, day, month, year;
@@ -55,7 +55,7 @@ const GoalProgressBar = Backbone.View.extend({
         return Math.min(100, (total / this.model.get('amount')) * 100);
     },
     calculateWeekProgress: function(logs) {
-        const now = new Date(),
+        const now = this.getCurrentDate(),
             weekBeginning = now.getDate() - now.getDay(),
             weekEnd = now.getDate() + (6 - now.getDay());
         let week = [],
@@ -75,7 +75,7 @@ const GoalProgressBar = Backbone.View.extend({
         return Math.min(100, (total / this.model.get('amount')) * 100);
     },
     calculateMonthProgress: function(logs) {
-        const now = new Date();
+        const now = this.getCurrentDate();
         let month = [],
             total = 0,
             date, log_month, year;
@@ -92,7 +92,7 @@ const GoalProgressBar = Backbone.View.extend({
         return Math.min(100, (total / this.model.get('amount')) * 100);
     },
     calculateYearProgress: function(logs) {
-        const now = new Date();
+        const now = this.getCurrentDate();
         let year = [],
             total = 0,
             date,
@@ -107,6 +107,13 @@ const GoalProgressBar = Backbone.View.extend({
         year.forEach(log => total += log.get('amount'));
 
         return Math.min(100, (total / this.model.get('amount')) * 100);
+    },
+    getCurrentDate: function() {
+        // If a date is set in the logger date-picker, use that date,
+        // otherwise, just use the current date.
+        let date_el = scriven.logger_view.$('#log-date');
+        let date = date_el ? date_el.value : '';
+        return date === '' ? new Date() : new Date(date + "T00:00:00");
     }
 });
 
