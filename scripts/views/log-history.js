@@ -63,6 +63,7 @@ const LogDayHistoryView = Backbone.View.extend({
             cell.style.left = x + "px";
             cell.style.background = d3.interpolateGnBu(percent_complete);
             cell.dataset.date = curr_date;
+            cell.addEventListener('click', this.handleClick);
 
             this.$el.append(cell);
         }
@@ -79,6 +80,21 @@ const LogDayHistoryView = Backbone.View.extend({
             if(log.get('date') === date) day_logs.push(log);
         });
         return day_logs;
+    },
+    handleClick: function(e) {
+        const cell = e.target,
+              date = new Date(cell.dataset.date),
+              day = date.getDate(),
+              month = date.getMonth() + 1,
+              d = day < 10 ? '0' + day : day,
+              m = month < 10 ? '0' + month : month,
+              picker = scriven.logger_view.$("#log-date");
+
+        $(cell).parent().find('.active').removeClass('active');
+        cell.classList.add('active');
+
+        picker.val(`${date.getFullYear()}-${m}-${d}`);
+        picker.trigger('change');
     }
 });
 
