@@ -122,9 +122,6 @@ const GoalsProgressView = Backbone.View.extend({
     initialize: function() {
         this.listenTo(this.collection, 'sync change add remove', this.render);
         this.listenTo(scriven.logs_collection, 'sync change add remove', this.render);
-
-        // Also render whenever the date picker changes, to show the progress for that day
-        scriven.logger_view.$('#log-date').change(this.render.bind(this));
     },
     render: function() {
         const interval_ids = _.uniq(this.collection.pluck("interval_id")).filter(id => typeof id === "number"),
