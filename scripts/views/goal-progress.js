@@ -112,8 +112,8 @@ const GoalProgressBar = Backbone.View.extend({
         // If a date is set in the logger date-picker, use that date,
         // otherwise, just use the current date.
         let date_el = scriven.logger_view.$('#log-date');
-        let date = date_el ? date_el.value : '';
-        return date === '' ? new Date() : new Date(date + "T00:00:00");
+        let date = date_el ? date_el.val() : '';
+        return date === '' || date === undefined ? new Date() : new Date(date + "T00:00:00");
     }
 });
 
