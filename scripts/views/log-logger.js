@@ -51,6 +51,7 @@ const LoggerView = Backbone.View.extend({
         units_label.classList = "units-label mb4 f6";
         date_picker.type = "date";
         date_picker.classList = 'mb3';
+        date_picker.id = 'log-date';
         date_picker.name = "date";
         date_label.textContent = "Select Date & Time";
         date_label.classList = "mr3 mb3";
