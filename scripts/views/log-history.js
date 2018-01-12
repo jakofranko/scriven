@@ -165,7 +165,7 @@ const LogWeekHistoryView = Backbone.View.extend({
                 cell.style.top = y + "px";
                 cell.style.left = x + "px";
                 cell.style.background = d3.interpolateGnBu(percent_complete);
-                cell.dataset.date = curr_date;
+                // cell.dataset.date = curr_date;
 
                 this.$el.append(cell);
             }
