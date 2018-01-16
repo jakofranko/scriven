@@ -15,6 +15,7 @@ function Scriven() {
     this.intervals_collection   = new IntervalsCollection();
     this.goals_collection       = new GoalsCollection();
     this.logs_collection        = new LogsCollection();
+    this.milestones_collection  = new MilestonesCollection();
 
     // Router
     this.router = new Router();
@@ -27,6 +28,7 @@ Scriven.prototype.install = function() {
     // Load views
     this.categories_view    = new CategoriesView({ collection: this.categories_collection });
     this.goals_view         = new GoalsTableView({ collection: this.goals_collection });
+    this.milestones_view    = new MilestoneTableView({ collection: this.milestones_collection });
     this.logs_table_view    = new LogsTableView({ collection: this.logs_collection });
     this.logger_view        = new LoggerView({ collection: this.logs_collection });
     this.progress_view      = new GoalsProgressView({ collection: this.goals_collection });
@@ -41,6 +43,7 @@ Scriven.prototype.install = function() {
     this.intervals_collection.fetch();
     this.goals_collection.fetch();
     this.logs_collection.fetch();
+    this.milestones_collection.fetch();
 };
 Scriven.prototype.getGoalsByInterval = function(interval) {
     const i = this.intervals_collection.findWhere({ name: interval });
