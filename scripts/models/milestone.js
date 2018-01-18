@@ -2,7 +2,8 @@ const MilestoneModel = Backbone.Model.extend({
     defaults: {
         id: null,
         goal_id: null,
-        name: null
+        name: null,
+        done: false
     }
 });
 
