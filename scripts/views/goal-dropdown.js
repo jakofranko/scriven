@@ -13,7 +13,7 @@ const GoalsDropdownItemView = Backbone.View.extend({
 
 const GoalsDropdownView = Backbone.View.extend({
     tagName: 'select',
-    className: 'goal-select',
+    className: 'goal-select mb3',
     initialize: function() {
         this.$el.attr('name', 'goal_id');
         this.listenTo(this.collection, 'sync change', this.render);
