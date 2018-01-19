@@ -13,17 +13,20 @@ const MilestonesDropdownItemView = Backbone.View.extend({
 const MilestonesDropdownView = Backbone.View.extend({
     tagName: 'select',
     className: 'milestone-select mb3',
-    initialize: function() {
+    initialize: function(options) {
         this.$el.attr('name', 'milestone_id');
         this.listenTo(this.collection, 'sync change', this.render);
+
+        if(options.getDone !== undefined)
+            this.getDone = options.getDone;
     },
     render: function() {
         let query = {},
             option, models;
 
-        if(this.getDone && this.getDone === true)
+        if(this.getDone !== undefined && this.getDone === true)
             query.done = 1;
-        else if(this.getDone && this.getDone === false)
+        else if(this.getDone !== undefined && this.getDone === false)
             query.done = 0;
 
         // This can be set upon initialization via the options object,

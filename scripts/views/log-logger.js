@@ -11,7 +11,10 @@ const LoggerView = Backbone.View.extend({
         this.description_label   = document.createElement('label');
         this.goal_picker         = new GoalsDropdownView({ collection: scriven.goals_collection });
         this.goal_label          = document.createElement('label');
-        this.milestone_picker    = new MilestonesDropdownView({ collection: scriven.milestones_collection });
+        this.milestone_picker    = new MilestonesDropdownView({
+            collection: scriven.milestones_collection,
+            getDone: false
+        });
         this.milestone_label     = document.createElement('label');
         this.amount_input        = document.createElement('input');
         this.amount_label        = document.createElement('label');
