@@ -35,9 +35,6 @@ Scriven.prototype.install = function() {
     this.history_day_view   = new LogDayHistoryView({ collection: this.logs_collection });
     this.history_week_view  = new LogWeekHistoryView({ collection: this.logs_collection });
 
-    // Cross-view event-listeners
-    this.logger_view.$("#log-date").change(this.handleDateChange.bind(this));
-
     // Finally, fetch the data
     this.categories_collection.fetch();
     this.intervals_collection.fetch();
