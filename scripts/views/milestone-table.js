@@ -8,7 +8,7 @@ const MilestoneTableRowView = Backbone.View.extend({
         let html = '';
 
         // Build rows
-        const attrs = ['id', 'name', 'goal_id'];
+        const attrs = ['id', 'name', 'goal_id', 'done'];
         for(let i = 0; i < attrs.length; i++) {
             if(attrs[i] === 'goal_id') {
                 let goal_id = this.model.get(attrs[i]);

@@ -2,6 +2,7 @@ const LogModel = Backbone.Model.extend({
     defaults: {
         description: "",
         goal_id: null,
+        milestone_id: null,
         amount: null,
         date: `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`,
         duration: null

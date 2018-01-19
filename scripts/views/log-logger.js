@@ -94,7 +94,7 @@ const LoggerView = Backbone.View.extend({
         const inputs = this.$el.find('input').add('select').add('textarea').not('.milestone-select');
         const milestone_select = this.$('.milestone-select');
         let log = new LogModel(),
-            milestone = new MilestoneModel(),
+            milestone,
             attrs = {};
 
         inputs.each((i, el) => {
@@ -110,9 +110,18 @@ const LoggerView = Backbone.View.extend({
         log.set(attrs);
 
         if(log.isValid()) {
-            // Add the model to the collection, save it, and blank out the inputs
+            // Add the model to the collection, save it
             this.collection.add(log);
             log.save();
+
+            // If a milestone is selected, mark it as done
+            if(milestone_select.val() !== "") {
+                milestone = scriven.milestones_collection.get(+milestone_select.val());
+                if(milestone)
+                    milestone.save({ done: true });
+            }
+
+            // Blank out inputs and errors
             inputs.each((i, el) => $(el).val(null));
             this.$('.errors').text(null);
         } else {
