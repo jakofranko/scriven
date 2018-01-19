@@ -135,7 +135,6 @@ const LoggerView = Backbone.View.extend({
         this.$('.units-label').html(units);
         
         // Set milestone goal_id
-        debugger;
         var goal_id = $(e.target).val();
         this.$('.milestone-select').data('goal_id', +goal_id);
 

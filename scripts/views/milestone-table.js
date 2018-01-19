@@ -152,7 +152,6 @@ const MilestoneTableView = Backbone.View.extend({
         'click .add': 'onAdd'
     },
     onAdd: function() {
-        debugger;
         const tr = new NewMilestoneTableRowView({ collection: this.collection });
         this.$('#milestone-list').append(tr.render().$el);
     },

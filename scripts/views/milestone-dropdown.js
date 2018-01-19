@@ -18,7 +18,6 @@ const MilestonesDropdownView = Backbone.View.extend({
         this.listenTo(this.collection, 'sync change', this.render);
     },
     render: function() {
-        debugger;
         let query = {},
             option, models;
 
