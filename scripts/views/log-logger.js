@@ -25,20 +25,24 @@ const LoggerView = Backbone.View.extend({
         this.duration_label      = document.createElement('label');
         this.submit              = document.createElement('button');
         this.errors              = document.createElement('div');
-        this.elements = [
+        this.required = [
             this.date_label,
             this.date_picker,
             this.goal_label,
             this.goal_picker,
             this.amount_label,
             this.amount_input,
-            this.units_label,
+            this.units_label
+        ];
+        this.optional = [
             this.milestone_label,
             this.milestone_picker,
             this.description_label,
             this.description_input,
             this.duration_label,
-            this.duration_input,
+            this.duration_input
+        ];
+        this.general = [
             this.submit,
             this.errors
         ];
@@ -46,6 +50,7 @@ const LoggerView = Backbone.View.extend({
         // Set attributes and text
         this.description_input.name = 'description';
         this.description_input.classList = 'mb3';
+        this.description_input.placeholder = '(Optional)';
         this.description_input.autofocus = true;
         this.description_label.textContent = "Description";
         this.description_label.classList = "description-label mr3 mb3";
@@ -77,20 +82,41 @@ const LoggerView = Backbone.View.extend({
         this.errors.classList = "r errors red mv3";
     },
     render: function() {
-        this.$el.html(null);
+        // this.$el.html(null);
+        const req = this.$("#required");
+        const opt = this.$("#optional");
+        const gen = this.$("#general");
 
         // Place elements
-        this.elements.forEach(element => {
+        this.required.forEach(element => {
             if(element.render)
-                this.$el.append(element.render().$el);
+                req.append(element.render().$el);
             else
-                this.$el.append(element);
+                req.append(element);
 
-            this.$el.append("<br />");
+            req.append("<br />");
+        });
+
+        this.optional.forEach(element => {
+            if(element.render)
+                opt.append(element.render().$el);
+            else
+                opt.append(element);
+
+            opt.append("<br />");
+        });
+
+        this.general.forEach(element => {
+            if(element.render)
+                gen.append(element.render().$el);
+            else
+                gen.append(element);
+
+            gen.append("<br />");
         });
 
         // Load scriven's event handler for the date picker
-        $(this.date_picker).change(scriven.handleDateChange.bind(scriven));
+        this.date_picker.addEventListener('change', scriven.handleDateChange.bind(scriven));
     },
     events: {
         'click .submit': 'onSubmit',
