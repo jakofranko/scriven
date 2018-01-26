@@ -82,10 +82,12 @@ const LoggerView = Backbone.View.extend({
         this.errors.classList = "r errors red mv3";
     },
     render: function() {
-        // this.$el.html(null);
         const req = this.$("#required");
         const opt = this.$("#optional");
         const gen = this.$("#general");
+
+        // Clear old html, if present
+        req.add(opt).add(gen).html(null);
 
         // Place elements
         this.required.forEach(element => {
