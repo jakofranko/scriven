@@ -118,7 +118,7 @@ const LoggerView = Backbone.View.extend({
         });
 
         // Load scriven's event handler for the date picker
-        this.date_picker.addEventListener('change', scriven.handleDateChange.bind(scriven));
+        $(this.date_picker).change(scriven.handleDateChange.bind(scriven));
     },
     events: {
         'click .submit': 'onSubmit',
