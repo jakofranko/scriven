@@ -114,7 +114,6 @@ const NewMilestoneTableRowView = Backbone.View.extend({
         'click .create': 'onCreate'
     },
     onCreate: function() {
-        debugger;
         let milestone = {};
         const inputs = this.$('input').add(this.$('select'));
         inputs.each((i, el) => {
