@@ -3,7 +3,8 @@ const MilestoneModel = Backbone.Model.extend({
         id: null,
         goal_id: null,
         name: null,
-        done: 0
+        done: 0,
+        date: null
     }
 });
 

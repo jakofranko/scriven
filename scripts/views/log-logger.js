@@ -152,7 +152,7 @@ const LoggerView = Backbone.View.extend({
             if(milestone_select.val() !== "") {
                 milestone = scriven.milestones_collection.get(+milestone_select.val());
                 if(milestone)
-                    milestone.save({ done: true });
+                    milestone.save({ done: true, date: this.date_picker.value });
             }
 
             // Blank out inputs and errors
