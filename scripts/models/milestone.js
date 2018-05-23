@@ -9,7 +9,7 @@ const MilestoneModel = Backbone.Model.extend({
 });
 
 const MilestonesCollection = Backbone.Collection.extend({
-    url: 'http://localhost:3000/milestones',
+    url: API + '/milestones',
     model: MilestoneModel,
     parse: function(data) {
         return data.milestones;

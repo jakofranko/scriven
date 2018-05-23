@@ -21,7 +21,7 @@ const GoalModel = Backbone.Model.extend({
 });
 
 const GoalsCollection = Backbone.Collection.extend({
-    url: 'http://localhost:3000/goals',
+    url: API + '/goals',
     model: GoalModel,
     parse: function(data) {
         return data.goals;

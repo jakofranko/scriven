@@ -6,7 +6,7 @@ const CategoryModel = Backbone.Model.extend({
 });
 
 const CategoriesCollection = Backbone.Collection.extend({
-    url: 'http://localhost:3000/categories',
+    url: API + '/categories',
     model: CategoryModel,
     parse: function(data) {
         return data.categories;

@@ -6,7 +6,7 @@ const IntervalModel = Backbone.Model.extend({
 });
 
 const IntervalsCollection = Backbone.Collection.extend({
-    url: "http://localhost:3000/intervals",
+    url: API + "/intervals",
     model: IntervalModel,
     parse: function(data) {
         return data.intervals;

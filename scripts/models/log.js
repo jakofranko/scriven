@@ -18,7 +18,7 @@ const LogModel = Backbone.Model.extend({
 });
 
 const LogsCollection = Backbone.Collection.extend({
-    url: 'http://localhost:3000/logs',
+    url: API + '/logs',
     model: LogModel,
     comparator: function(modelA, modelB) {
         // Sort by date descending (newest log first)
