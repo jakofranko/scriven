@@ -1,7 +1,7 @@
 const LogDayHistoryView = Backbone.View.extend({
     el: "#history",
     initialize: function() {
-        this.listenTo(this.collection, 'sync change add delete remove', this.render);
+        this.listenTo(this.collection, 'sync change update', this.render);
     },
     render: function() {
         // TODO: Clean up this mess. Vom.
@@ -101,7 +101,7 @@ const LogDayHistoryView = Backbone.View.extend({
 const LogWeekHistoryView = Backbone.View.extend({
     el: "#history",
     initialize: function() {
-        this.listenTo(this.collection, 'sync change add delete remove', this.render);
+        this.listenTo(this.collection, 'sync change update', this.render);
     },
     render: function() {
         // TODO: Clean up this mess. Vom.

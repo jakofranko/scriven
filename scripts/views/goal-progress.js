@@ -120,8 +120,8 @@ const GoalProgressBar = Backbone.View.extend({
 const GoalsProgressView = Backbone.View.extend({
     el: "#progress",
     initialize: function() {
-        this.listenTo(this.collection, 'sync change add remove', this.render);
-        this.listenTo(scriven.logs_collection, 'sync change add remove', this.render);
+        this.listenTo(this.collection, 'sync change update', this.render);
+        this.listenTo(scriven.logs_collection, 'sync change update', this.render);
     },
     render: function() {
         const interval_ids = _.uniq(this.collection.pluck("interval_id")).filter(id => typeof id === "number"),

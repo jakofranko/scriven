@@ -100,8 +100,8 @@ const LogsTableRowView = Backbone.View.extend({
 const LogsTableView = Backbone.View.extend({
     el: "#logs",
     initialize: function() {
-        this.listenTo(this.collection, 'sync change add remove', this.render);
-        this.listenTo(scriven.goals_collection, 'sync change add remove', this.render);
+        this.listenTo(this.collection, 'sync change update', this.render);
+        this.listenTo(scriven.goals_collection, 'sync change update', this.render);
     },
     render: function() {
         let $table = this.$("#logs-list"),
