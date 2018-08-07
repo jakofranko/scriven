@@ -100,7 +100,7 @@ const GoalProgressBar = Backbone.View.extend({
         logs.forEach(log => {
             date = log.get('date');
             log_year = Number(date.split("-")[0]);
-            if(log_year === now.getYear())
+            if(log_year === now.getFullYear())
                 year.push(log);
         });
 
