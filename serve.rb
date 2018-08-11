@@ -1,7 +1,8 @@
 require 'sinatra'
 
 set :public_folder, '.'
-set :port, 8888
+set :bind, '0.0.0.0'
+set :port, 8080
 
 
 get '/' do
