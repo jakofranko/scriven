@@ -2,6 +2,12 @@ const IntervalModel = Backbone.Model.extend({
     defaults: {
         id: null,
         name: null
+    },
+    parse: function(data, options) {
+        return {
+            id: Number(data.id),
+            name: data.name
+        }
     }
 });
 

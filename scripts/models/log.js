@@ -7,6 +7,16 @@ const LogModel = Backbone.Model.extend({
         date: `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`,
         duration: null
     },
+    parse: function(data, options) {
+        return {
+            amount: Number(data.amount),
+            goal_id: Number(data.goal_id),
+            milestone_id: Number(data.milestone_id),
+            description: data.description,
+            date: data.date,
+            duration: Number(data.duration)
+        };
+    },
     validate: function(attrs, options) {
         if((attrs.goal_id === "" || attrs.goal_id === null) && attrs.description === "")
             return "You must pick a goal/task OR a description";

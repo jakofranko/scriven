@@ -10,6 +10,16 @@ const GoalModel = Backbone.Model.extend({
         category_id: null,
         interval_id: null
     },
+    parse: function(data, options) {
+        return {
+            amount: Number(data.amount),
+            category_id: Number(data.category_id),
+            id: Number(data.id),
+            interval_id:Number(data.interval_id),
+            name: data.name,
+            unit: data.unit
+        }
+    },
     validate: function(attrs, options) {
         if(typeof Number(attrs.amount) !== "number" || isNaN(attrs.amount))
             return "Amount must be a number";
