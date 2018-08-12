@@ -5,6 +5,15 @@ const MilestoneModel = Backbone.Model.extend({
         name: null,
         done: 0,
         date: null
+    },
+    parse: function(data, options) {
+        return {
+            id: Number(data.id),
+            goal_id: Number(data.goal_id),
+            name: data.name,
+            done: Number(data.done),
+            date: data.date
+        }
     }
 });
 
